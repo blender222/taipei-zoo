@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.sean.taipeizoo.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null 
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
 
@@ -25,10 +27,16 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = AreaAdapter()
-        binding.areaList.adapter = adapter
-        viewModel.areaList.observe(viewLifecycleOwner) {
-            adapter.areaList = it
+        val adapter = AreaListAdapter { areaId, areaName ->
+            findNavController().navigate(HomeFragmentDirections.actionHomeToArea(areaId, areaName))
+        }
+        with(binding) {
+            areaList.adapter = adapter
+            areaList.addItemDecoration(DividerItemDecoration(areaList.context, DividerItemDecoration.VERTICAL))
+            viewModel.areaList.observe(viewLifecycleOwner) {
+                adapter.areaList = it
+                adapter.notifyDataSetChanged()
+            }
         }
     }
 

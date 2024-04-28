@@ -4,25 +4,28 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.sean.taipeizoo.R
+import com.sean.taipeizoo.common.toHttps
 import com.sean.taipeizoo.databinding.ItemAreaBinding
 import com.sean.taipeizoo.model.Area
 
-class AreaAdapter : RecyclerView.Adapter<AreaAdapter.ViewHolder>() {
+class AreaListAdapter(
+    private val toAreaFragment: (Int, String) -> Unit
+) : RecyclerView.Adapter<AreaListAdapter.ViewHolder>() {
     var areaList = listOf<Area>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
 
     class ViewHolder(private val binding: ItemAreaBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(area: Area) {
+        fun bind(area: Area, onClick: (Int, String) -> Unit) {
             with(binding) {
                 name.text = area.name
-                memo.text = area.memo.ifEmpty { "無休館資訊" }
+                memo.text = area.memo.ifEmpty {
+                    root.context.getString(R.string.no_closed_info)
+                }
                 info.text = area.info
                 Glide.with(image)
-                    .load(area.imageUrl.replaceFirst("http", "https"))
+                    .load(area.imageUrl.toHttps())
                     .into(image)
+                root.setOnClickListener { onClick(area.id, area.name) }
             }
         }
     }
@@ -33,7 +36,7 @@ class AreaAdapter : RecyclerView.Adapter<AreaAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(areaList[position])
+        holder.bind(areaList[position], toAreaFragment)
     }
 
     override fun getItemCount() = areaList.size

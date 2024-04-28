@@ -1,5 +1,3 @@
-@file:Suppress("LocalVariableName")
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -9,6 +7,9 @@ plugins {
 
     // Hilt
     id("com.google.dagger.hilt.android")
+
+    // Safe Args
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -58,9 +59,8 @@ dependencies {
     ksp("com.google.dagger:hilt-android-compiler:2.49")
 
     // Navigation
-    val nav_version = "2.7.7"
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-fragment-ktx:${rootProject.extra["nav_version"]}")
+    implementation("androidx.navigation:navigation-ui-ktx:${rootProject.extra["nav_version"]}")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

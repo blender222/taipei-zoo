@@ -11,6 +11,8 @@ data class Area(
     val info: String,
     @SerializedName(value = "e_memo")
     val memo: String,
+    @SerializedName(value = "e_category")
+    val category: String,
     @SerializedName(value = "e_pic_url")
     val imageUrl: String
 )
