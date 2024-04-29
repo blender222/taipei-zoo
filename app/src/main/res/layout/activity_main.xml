@@ -7,19 +7,13 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:elevation="4dp">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorSurfaceContainer"
-            android:theme="?attr/actionBarTheme"
-            app:title="臺北市立動物園" />
-    </com.google.android.material.appbar.AppBarLayout>
+        android:background="?attr/colorSurfaceContainer"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
@@ -30,5 +24,4 @@
         android:background="@color/white"
         app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
-
 </LinearLayout>

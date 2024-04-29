@@ -13,7 +13,8 @@ import com.sean.taipeizoo.model.Animal
 import com.sean.taipeizoo.model.Area
 
 class AreaDetailAdapter(
-    private val uiData: UiData
+    private val uiData: UiData,
+    private val onClick: (Animal) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     enum class ViewType {
         AreaDetail, AnimalItem
@@ -35,7 +36,7 @@ class AreaDetailAdapter(
     }
 
     class AnimalItemViewHolder(private val binding: ItemAnimalBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(animal: Animal) {
+        fun bind(animal: Animal, onClick: (Animal) -> Unit) {
             with(binding) {
                 name.text = animal.nameCh
                 intro.text = animal.behavior
@@ -44,6 +45,7 @@ class AreaDetailAdapter(
                 Glide.with(image)
                     .load(animal.imageUrl.toHttps())
                     .into(image)
+                root.setOnClickListener { onClick(animal) }
             }
         }
     }
@@ -64,7 +66,7 @@ class AreaDetailAdapter(
                 (holder as AreaDetailViewHolder).bind(uiData.area)
             }
             ViewType.AnimalItem.ordinal -> {
-                (holder as AnimalItemViewHolder).bind(uiData.animalList[position - 1])
+                (holder as AnimalItemViewHolder).bind(uiData.animalList[position - 1], onClick)
             }
         }
     }

@@ -15,4 +15,7 @@ interface ZooApiService {
 
     @GET("api/v1/dataset/a3e2b221-75e0-45c1-8f97-75acbd43d613?scope=resourceAquire&limit=1000")
     suspend fun getAnimalList(@Query("q") query: String): JsonRoot<Animal>
+
+    @GET("api/v1/dataset/a3e2b221-75e0-45c1-8f97-75acbd43d613?scope=resourceAquire&limit=1")
+    suspend fun getAnimal(@Query("offset") offset: Int): JsonRoot<Animal>
 }

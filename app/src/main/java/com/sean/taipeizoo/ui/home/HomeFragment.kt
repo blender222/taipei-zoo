@@ -27,8 +27,8 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val adapter = AreaListAdapter { areaId, areaName ->
-            findNavController().navigate(HomeFragmentDirections.actionHomeToArea(areaId, areaName))
+        val adapter = AreaListAdapter { area ->
+            findNavController().navigate(HomeFragmentDirections.actionHomeToArea(area.id, area.name))
         }
         with(binding) {
             areaList.adapter = adapter

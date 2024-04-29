@@ -6,6 +6,8 @@ import javax.inject.Inject
 
 interface AnimalRepository {
     suspend fun getList(areaName: String): List<Animal>
+
+    suspend fun getById(id: Int): Animal
 }
 
 class AnimalRepositoryImpl @Inject constructor(
@@ -14,5 +16,9 @@ class AnimalRepositoryImpl @Inject constructor(
     override suspend fun getList(areaName: String): List<Animal> {
         val location = areaName.substringBefore('（')
         return zooApiService.getAnimalList("a_location $location").result.results
+    }
+
+    override suspend fun getById(id: Int): Animal {
+        return zooApiService.getAnimal(offset = id - 1).result.results.first()
     }
 }

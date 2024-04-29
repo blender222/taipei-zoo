@@ -10,12 +10,12 @@ import com.sean.taipeizoo.databinding.ItemAreaBinding
 import com.sean.taipeizoo.model.Area
 
 class AreaListAdapter(
-    private val toAreaFragment: (Int, String) -> Unit
+    private val onClick: (Area) -> Unit
 ) : RecyclerView.Adapter<AreaListAdapter.ViewHolder>() {
     var areaList = listOf<Area>()
 
     class ViewHolder(private val binding: ItemAreaBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(area: Area, onClick: (Int, String) -> Unit) {
+        fun bind(area: Area, onClick: (Area) -> Unit) {
             with(binding) {
                 name.text = area.name
                 memo.text = area.memo.ifEmpty {
@@ -25,7 +25,7 @@ class AreaListAdapter(
                 Glide.with(image)
                     .load(area.imageUrl.toHttps())
                     .into(image)
-                root.setOnClickListener { onClick(area.id, area.name) }
+                root.setOnClickListener { onClick(area) }
             }
         }
     }
@@ -36,7 +36,7 @@ class AreaListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(areaList[position], toAreaFragment)
+        holder.bind(areaList[position], onClick)
     }
 
     override fun getItemCount() = areaList.size

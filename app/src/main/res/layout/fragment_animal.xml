@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="invisible"
+    tools:context=".ui.animal.AnimalFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="24dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/name_ch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/image" />
+
+        <TextView
+            android:id="@+id/name_en"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/name_ch"
+            app:layout_constraintStart_toStartOf="@+id/name_ch"
+            app:layout_constraintTop_toBottomOf="@+id/name_ch" />
+
+        <TextView
+            android:id="@+id/also_known_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/also_known"
+            app:layout_constraintEnd_toEndOf="@+id/name_ch"
+            app:layout_constraintStart_toStartOf="@+id/name_ch"
+            app:layout_constraintTop_toBottomOf="@+id/name_en" />
+
+        <TextView
+            android:id="@+id/also_known"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/name_ch"
+            app:layout_constraintStart_toStartOf="@+id/name_ch"
+            app:layout_constraintTop_toBottomOf="@+id/also_known_title" />
+
+        <TextView
+            android:id="@+id/distribution_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/distribution"
+            app:layout_constraintEnd_toEndOf="@+id/name_ch"
+            app:layout_constraintStart_toStartOf="@+id/name_ch"
+            app:layout_constraintTop_toBottomOf="@+id/also_known" />
+
+        <TextView
+            android:id="@+id/distribution"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/name_ch"
+            app:layout_constraintStart_toStartOf="@+id/name_ch"
+            app:layout_constraintTop_toBottomOf="@+id/distribution_title" />
+
+        <TextView
+            android:id="@+id/habitat_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/habitat"
+            app:layout_constraintEnd_toEndOf="@+id/name_ch"
+            app:layout_constraintStart_toStartOf="@+id/name_ch"
+            app:layout_constraintTop_toBottomOf="@+id/distribution" />
+
+        <TextView
+            android:id="@+id/habitat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/name_ch"
+            app:layout_constraintStart_toStartOf="@+id/name_ch"
+            app:layout_constraintTop_toBottomOf="@+id/habitat_title" />
+
+        <TextView
+            android:id="@+id/feature_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/feature"
+            app:layout_constraintEnd_toEndOf="@+id/name_ch"
+            app:layout_constraintStart_toStartOf="@+id/name_ch"
+            app:layout_constraintTop_toBottomOf="@+id/habitat" />
+
+        <TextView
+            android:id="@+id/feature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/name_ch"
+            app:layout_constraintStart_toStartOf="@+id/name_ch"
+            app:layout_constraintTop_toBottomOf="@+id/feature_title" />
+
+        <TextView
+            android:id="@+id/behavior_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/behavior"
+            app:layout_constraintEnd_toEndOf="@+id/name_ch"
+            app:layout_constraintStart_toStartOf="@+id/name_ch"
+            app:layout_constraintTop_toBottomOf="@+id/feature" />
+
+        <TextView
+            android:id="@+id/behavior"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/name_ch"
+            app:layout_constraintStart_toStartOf="@+id/name_ch"
+            app:layout_constraintTop_toBottomOf="@+id/behavior_title" />
+
+        <TextView
+            android:id="@+id/update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/name_ch"
+            app:layout_constraintStart_toStartOf="@+id/name_ch"
+            app:layout_constraintTop_toBottomOf="@+id/behavior" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

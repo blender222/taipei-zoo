@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.sean.taipeizoo.databinding.FragmentAreaBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +27,9 @@ class AreaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel.uiData.observe(viewLifecycleOwner) { uiData ->
-            val adapter = AreaDetailAdapter(uiData)
+            val adapter = AreaDetailAdapter(uiData) { animal ->
+                findNavController().navigate(AreaFragmentDirections.actionAreaToAnimal(animal.id, animal.nameCh))
+            }
             binding.container.adapter = adapter
         }
     }

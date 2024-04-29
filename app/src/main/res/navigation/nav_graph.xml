@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/home_fragment"
         android:name="com.sean.taipeizoo.ui.home.HomeFragment"
-        android:label="fragment_home"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_area"
@@ -17,13 +17,27 @@
     <fragment
         android:id="@+id/area_fragment"
         android:name="com.sean.taipeizoo.ui.area.AreaFragment"
-        android:label="fragment_area"
+        android:label="{areaName}"
         tools:layout="@layout/fragment_area">
         <argument
             android:name="areaId"
             app:argType="integer" />
         <argument
             android:name="areaName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_area_to_animal"
+            app:destination="@id/animal_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/animal_fragment"
+        android:name="com.sean.taipeizoo.ui.animal.AnimalFragment"
+        android:label="{animalName}" >
+        <argument
+            android:name="animalId"
+            app:argType="integer" />
+        <argument
+            android:name="animalName"
             app:argType="string" />
     </fragment>
 </navigation>

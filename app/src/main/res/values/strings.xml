@@ -3,4 +3,12 @@
     <string name="no_closed_info">無休館資訊</string>
     <string name="click_to_go">點擊前往</string>
     <string name="animal_data">動物資料</string>
+    <string name="also_known">別名</string>
+    <string name="distribution">分布地區</string>
+    <string name="habitat">棲息地</string>
+    <string name="feature">特徵</string>
+    <string name="behavior">生活習性</string>
+    <string name="last_updated">最後更新︰%s</string>
+    <string name="none">無</string>
+    <string name="no_data">無資料</string>
 </resources>
