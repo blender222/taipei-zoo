@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.sean.taipeizoo.R
+import com.sean.taipeizoo.common.Status
 import com.sean.taipeizoo.common.toHttps
 import com.sean.taipeizoo.common.trimNewLineStart
 import com.sean.taipeizoo.databinding.FragmentAnimalBinding
@@ -31,6 +33,15 @@ class AnimalFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val noneText = getString(R.string.none)
         with(binding) {
+            viewModel.status.observe(viewLifecycleOwner) {
+                if (it == Status.NetworkError) {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.network_error),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
             viewModel.animal.observe(viewLifecycleOwner) {
                 nameCh.text = it.nameCh
                 nameEn.text = it.nameEn

@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.sean.taipeizoo.R
+import com.sean.taipeizoo.common.Status
 import com.sean.taipeizoo.databinding.FragmentAreaBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,6 +31,15 @@ class AreaFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel.status.observe(viewLifecycleOwner) {
+            if (it == Status.NetworkError) {
+                Toast.makeText(
+                    context,
+                    getString(R.string.network_error),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
         viewModel.uiData.observe(viewLifecycleOwner) { uiData ->
             val adapter = AreaDetailAdapter(
                 uiData,
