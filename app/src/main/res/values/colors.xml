@@ -5,4 +5,5 @@
     <color name="gray">#FF666666</color>
     <color name="gray_gap">#FFEEEEEE</color>
     <color name="gray_divider">#FFDDDDDD</color>
+    <color name="link_blue">#409BE1</color>
 </resources>

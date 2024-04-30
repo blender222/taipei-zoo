@@ -14,6 +14,7 @@ import com.sean.taipeizoo.model.Area
 
 class AreaDetailAdapter(
     private val uiData: UiData,
+    private val openLink: (String) -> Unit,
     private val onClick: (Animal) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     enum class ViewType {
@@ -21,13 +22,14 @@ class AreaDetailAdapter(
     }
 
     class AreaDetailViewHolder(private val binding: ItemAreaDetailBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(area: Area) {
+        fun bind(area: Area, openLink: (String) -> Unit) {
             with(binding) {
                 info.text = area.info
                 memo.text = area.memo.ifEmpty {
                     root.context.getString(R.string.no_closed_info)
                 }
                 category.text = area.category
+                link.setOnClickListener { openLink(area.url) }
                 Glide.with(image)
                     .load(area.imageUrl.toHttps())
                     .into(image)
@@ -63,7 +65,7 @@ class AreaDetailAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder.itemViewType) {
             ViewType.AreaDetail.ordinal -> {
-                (holder as AreaDetailViewHolder).bind(uiData.area)
+                (holder as AreaDetailViewHolder).bind(uiData.area, openLink)
             }
             ViewType.AnimalItem.ordinal -> {
                 (holder as AnimalItemViewHolder).bind(uiData.animalList[position - 1], onClick)
